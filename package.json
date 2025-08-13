@@ -6,9 +6,9 @@
     "build": "turbo run build",
     "dev": "turbo run dev",
     "refactor:fix": "ultracite format",
-    "macos": "turbo --filter @buddy/macos run",
-    "macos:dev": "turbo --filter @buddy/macos run dev",
-    "macos:build": "turbo --filter @buddy/macos run build"
+    "macos": "turbo run --filter @buddy/macos",
+    "macos:dev": "turbo run --filter @buddy/macos dev",
+    "macos:build": "turbo run --filter @buddy/macos build"
   },
   "devDependencies": {
     "@biomejs/biome": "2.1.2",
