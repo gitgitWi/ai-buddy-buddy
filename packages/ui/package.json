@@ -1,5 +1,5 @@
 {
-  "name": "@repo/ui",
+  "name": "@buddy/ui",
   "version": "0.0.0",
   "exports": {
     ".": "./index.ts",
@@ -7,10 +7,7 @@
     "./header": "./components/header.ts",
     "./setup-counter": "./utils/counter.ts"
   },
-  "license": "MIT",
-  "scripts": {
-    "lint": "eslint \"**/*.ts\""
-  },
+  "scripts": {},
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
@@ -18,9 +15,7 @@
   "devDependencies": {
     "@types/react": "^19.0.1",
     "@types/react-dom": "^19.0.2",
-    "@repo/eslint-config": "*",
-    "@repo/typescript-config": "*",
-    "eslint": "^8.57.0",
+    "@buddy/typescript-config": "*",
     "typescript": "5.5.4"
   }
 }

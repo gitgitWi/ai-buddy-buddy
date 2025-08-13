@@ -1,18 +1,16 @@
 {
+  "name": "ai-buddy-buddy",
   "private": true,
+  "packageManager": "bun@1.2.20",
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev",
-    "lint": "turbo run lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+    "lint": "turbo run lint"
   },
   "devDependencies": {
-    "eslint": "^8.57.0",
-    "prettier": "^3.2.5",
+    "@biomejs/biome": "^2.1.4",
     "turbo": "^2.5.5"
   },
-  "name": "with-vite-react",
-  "packageManager": "bun@1.2.20",
   "workspaces": [
     "apps/*",
     "packages/*"
