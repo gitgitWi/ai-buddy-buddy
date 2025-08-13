@@ -1,19 +1,19 @@
-import React from "react";
-import { createRoot } from "react-dom/client";
-import "./style.css";
-import typescriptLogo from "/typescript.svg";
-import { Header, Counter } from "@buddy/ui";
+import React from 'react';
+import { createRoot } from 'react-dom/client';
+import './style.css';
+import { Counter, Header } from '@buddy/ui';
+import typescriptLogo from '/typescript.svg';
 
 const App = () => (
   <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" className="logo" alt="Vite logo" />
+    <a href="https://vitejs.dev" rel="noopener" target="_blank">
+      <img alt="Vite logo" className="logo" src="/vite.svg" />
     </a>
-    <a href="https://www.typescriptlang.org/" target="_blank">
+    <a href="https://www.typescriptlang.org/" rel="noopener" target="_blank">
       <img
-        src={typescriptLogo}
-        className="logo vanilla"
         alt="TypeScript logo"
+        className="logo vanilla"
+        src={typescriptLogo}
       />
     </a>
     <Header title="Web" />
@@ -23,4 +23,4 @@ const App = () => (
   </div>
 );
 
-createRoot(document.getElementById("app")!).render(<App />);
+createRoot(document.getElementById('app')!).render(<App />);
