@@ -1,22 +1,22 @@
 {
-	"name": "ai-buddy-buddy",
-	"private": true,
-	"packageManager": "bun@1.2.20",
-	"scripts": {
-		"build": "turbo run build",
-		"dev": "turbo run dev",
-		"lint": "turbo run lint",
-		"macos": "turbo run --filter @buddy/macos",
-		"macos:dev": "turbo run --filter @buddy/macos dev",
-		"macos:build": "turbo run --filter @buddy/macos build"
-	},
-	"devDependencies": {
-		"@biomejs/biome": "2.1.2",
-		"turbo": "^2.5.5",
-		"ultracite": "5.1.2"
-	},
-	"workspaces": [
-		"apps/*",
-		"packages/*"
-	]
+  "name": "ai-buddy-buddy",
+  "private": true,
+  "packageManager": "bun@1.2.20",
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "refactor:fix": "ultracite format",
+    "macos": "turbo --filter @buddy/macos run",
+    "macos:dev": "turbo --filter @buddy/macos run dev",
+    "macos:build": "turbo --filter @buddy/macos run build"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.1.2",
+    "turbo": "^2.5.5",
+    "ultracite": "5.1.2"
+  },
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ]
 }
