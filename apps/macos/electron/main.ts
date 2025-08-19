@@ -34,6 +34,17 @@ function createWindow() {
     webPreferences: {
       preload: path.join(__dirname, 'preload.mjs'),
     },
+    alwaysOnTop: true,
+    transparent: true,
+    frame: false,
+    backgroundColor: '#00000000',
+    backgroundMaterial: 'auto',
+    titleBarStyle: 'hiddenInset',
+    titleBarOverlay: true,
+    roundedCorners: true,
+    vibrancy: 'fullscreen-ui',
+    visualEffectState: 'active',
+    hasShadow: true,
   });
 
   // Test active push message to Renderer-process.

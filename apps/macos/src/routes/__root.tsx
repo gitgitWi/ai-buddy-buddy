@@ -1,5 +1,6 @@
 import { createRootRoute, Outlet } from '@tanstack/react-router';
 import { TanStackRouterDevtools } from '@tanstack/react-router-devtools';
+import type { PropsWithChildren } from 'react';
 
 export const Route = createRootRoute({
   component: RootComponent,
@@ -7,10 +8,16 @@ export const Route = createRootRoute({
 
 function RootComponent() {
   return (
-    <>
-      <div>Hello "__root"! {import.meta.env.MODE}</div>
+    <RootLayout>
       <Outlet />
       {import.meta.env.DEV && <TanStackRouterDevtools />}
-    </>
+    </RootLayout>
+  );
+}
+
+function RootLayout({ children }: PropsWithChildren) {
+  return (
+    // TODO: header
+    <div className="app_region_no_drag h-full w-full pt-6">{children}</div>
   );
 }
