@@ -45,6 +45,9 @@ function createWindow() {
     vibrancy: 'fullscreen-ui',
     visualEffectState: 'active',
     hasShadow: true,
+
+    width: 480,
+    height: 720,
   });
 
   // Test active push message to Renderer-process.
