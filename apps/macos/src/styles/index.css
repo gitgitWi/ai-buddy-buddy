@@ -2,7 +2,7 @@
 @import "tw-animate-css";
 @import "./_fonts.css";
 
-@custom-variant dark (&:is(.dark *));
+/* @custom-variant dark (&:is(.dark *)); */
 
 :root {
   font-family:
@@ -18,17 +18,18 @@
   font-weight: 400;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
+  color: var(--color-neutral-100);
+  background-color: oklch(0.2 0 0 / 0.2);
   backdrop-filter: blur(4px);
-  background-color: rgba(0, 0, 0, 0.2);
+  transition-property: color, background-color;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
+  --background: oklch(0.97 0 0 / 0.2);
+  --foreground: oklch(20.5% 0 0);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
@@ -62,8 +63,8 @@
 
 @media (prefers-color-scheme: light) {
   :root {
-    color: #213547;
-    background-color: rgba(255, 255, 255, 0.2);
+    color: var(--color-neutral-900);
+    background-color: oklch(0.97 0 0 / 0.2);
   }
   a:hover {
     color: #747bff;
@@ -112,8 +113,8 @@
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
+  --background: oklch(0.2 0 0 / 0.2);
+  --foreground: oklch(97% 0 0);
   --card: oklch(0.205 0 0);
   --card-foreground: oklch(0.985 0 0);
   --popover: oklch(0.205 0 0);
@@ -155,6 +156,11 @@
     -webkit-app-region: drag;
   }
 
+  body,
+  #root {
+    @apply h-full;
+  }
+
   html,
   body {
     @apply overflow-auto bg-transparent;
@@ -171,7 +177,23 @@
     font-size: 85%;
   }
 
+  :not(html, body, div, section, article, footer, nav, header) {
+    -webkit-app-region: no-drag;
+  }
+
   .app_region_no_drag {
     -webkit-app-region: no-drag;
+  }
+
+  ::-webkit-scrollbar {
+    @apply w-1.5 mr-1 rounded-4xl;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent rounded-4xl;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-neutral-500 opacity-75 rounded-2xl;
   }
 }
