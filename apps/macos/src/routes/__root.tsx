@@ -18,6 +18,6 @@ function RootComponent() {
 function RootLayout({ children }: PropsWithChildren) {
   return (
     // TODO: header
-    <div className="app_region_no_drag h-full w-full pt-6">{children}</div>
+    <div className="h-full w-full pt-6">{children}</div>
   );
 }
