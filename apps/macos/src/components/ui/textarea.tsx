@@ -4,7 +4,7 @@ import TextareaAutosize, {
 } from 'react-textarea-autosize';
 import { cn } from '~/lib/utils';
 
-function Textarea({
+export function Textarea({
   className,
   ...props
 }: Omit<ComponentProps<'textarea'>, 'style'> & TextareaAutosizeProps) {
@@ -19,5 +19,3 @@ function Textarea({
     />
   );
 }
-
-export { Textarea };
