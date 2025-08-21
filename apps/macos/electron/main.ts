@@ -1,7 +1,7 @@
+import { app, BrowserWindow, session } from 'electron';
 import { createRequire } from 'node:module';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { app, BrowserWindow } from 'electron';
 
 const require = createRequire(import.meta.url);
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -33,10 +33,13 @@ function createWindow() {
     icon: path.join(process.env.VITE_PUBLIC, 'electron-vite.svg'),
     webPreferences: {
       preload: path.join(__dirname, 'preload.mjs'),
+      webviewTag: true,
     },
     alwaysOnTop: true,
-    transparent: true,
+
     frame: false,
+    transparent: true,
+    opacity: 1,
     backgroundColor: '#00000000',
     backgroundMaterial: 'auto',
     titleBarStyle: 'hiddenInset',
@@ -46,13 +49,35 @@ function createWindow() {
     visualEffectState: 'active',
     hasShadow: true,
 
-    width: 480,
+    width: 520,
+    minWidth: 520,
     height: 720,
+    minHeight: 640,
   });
 
   // Test active push message to Renderer-process.
   win.webContents.on('did-finish-load', () => {
     win?.webContents.send('main-process-message', new Date().toLocaleString());
+  });
+
+  win.webContents.setWindowOpenHandler(({ url }) => {
+    const newSession = session.fromPartition('persist:webview', {
+      cache: true,
+    });
+    const newWindow = new BrowserWindow({
+      webPreferences: {
+        session: newSession,
+        contextIsolation: true,
+        nodeIntegration: false,
+      },
+      frame: true,
+      alwaysOnTop: true,
+      opacity: 0.95,
+      backgroundColor: '#00000000',
+      roundedCorners: true,
+    });
+    newWindow.loadURL(url);
+    return { action: 'deny' };
   });
 
   if (VITE_DEV_SERVER_URL) {
