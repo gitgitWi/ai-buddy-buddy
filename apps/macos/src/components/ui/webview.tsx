@@ -2,7 +2,7 @@ import type { WebviewTag } from 'electron';
 import { useEffect, useRef } from 'react';
 import { cn } from '~/lib/utils';
 
-type WebviewProps = {
+export type WebviewProps = {
   src: string;
   className?: string;
   partition?: string;
@@ -26,10 +26,12 @@ export function Webview({
   }, [zoomFactor]);
 
   return (
-    <div className="shrink-0 overflow-hidden rounded-md shadow-lg">
+    <div
+      className={cn('shrink-0 overflow-hidden rounded-md shadow-lg', className)}
+    >
       <webview
         allowpopups
-        className={cn('h-full w-full', className)}
+        className={cn('h-full w-full')}
         partition={partition}
         ref={ref}
         src={src}
