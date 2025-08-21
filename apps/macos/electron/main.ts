@@ -2,6 +2,7 @@ import { app, BrowserWindow, session } from 'electron';
 import { createRequire } from 'node:module';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { registerHandlers } from './handlers';
 
 const require = createRequire(import.meta.url);
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -79,6 +80,8 @@ function createWindow() {
     newWindow.loadURL(url);
     return { action: 'deny' };
   });
+
+  registerHandlers();
 
   if (VITE_DEV_SERVER_URL) {
     win.loadURL(VITE_DEV_SERVER_URL);
