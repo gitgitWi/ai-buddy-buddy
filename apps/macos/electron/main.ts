@@ -31,7 +31,7 @@ let win: BrowserWindow | null;
 
 function createWindow() {
   win = new BrowserWindow({
-    icon: path.join(process.env.VITE_PUBLIC, 'electron-vite.svg'),
+    icon: path.join(process.env.VITE_PUBLIC as string, 'electron-vite.svg'),
     webPreferences: {
       preload: path.join(__dirname, 'preload.mjs'),
       webviewTag: true,
@@ -41,7 +41,7 @@ function createWindow() {
     frame: false,
     transparent: true,
     opacity: 1,
-    backgroundColor: '#00000000',
+    backgroundColor: 'rgba(255,255,255,0)',
     backgroundMaterial: 'auto',
     titleBarStyle: 'hiddenInset',
     titleBarOverlay: true,
@@ -49,6 +49,7 @@ function createWindow() {
     vibrancy: 'fullscreen-ui',
     visualEffectState: 'active',
     hasShadow: true,
+    useContentSize: true,
 
     width: 520,
     minWidth: 520,
@@ -58,6 +59,11 @@ function createWindow() {
 
   // Test active push message to Renderer-process.
   win.webContents.on('did-finish-load', () => {
+    if (!import.meta.env.DEV) {
+      return;
+    }
+
+    win?.webContents.openDevTools();
     win?.webContents.send('main-process-message', new Date().toLocaleString());
   });
 
@@ -73,7 +79,7 @@ function createWindow() {
       },
       frame: true,
       alwaysOnTop: true,
-      opacity: 0.95,
+      opacity: 1,
       backgroundColor: '#00000000',
       roundedCorners: true,
     });
