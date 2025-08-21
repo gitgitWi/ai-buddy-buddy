@@ -11,7 +11,6 @@ import {
 } from '@lobehub/icons';
 
 export enum Tags {
-  Default = 'default',
   Foundation = 'foundation',
   Search = 'search',
   MultiLlm = 'multi-llm',
@@ -44,7 +43,7 @@ export const OPTIONS = [
   {
     name: 'ChatGPT',
     url: 'https://chatgpt.com/',
-    tag: new Set([Tags.Default, Tags.Foundation]),
+    tag: new Set([Tags.Foundation]),
     icon: {
       hasUrl: true,
       url: 'https://chatgpt.com/favicon.ico',
@@ -55,7 +54,7 @@ export const OPTIONS = [
   {
     name: 'Claude',
     url: 'https://claude.ai/new',
-    tag: new Set([Tags.Default, Tags.Foundation]),
+    tag: new Set([Tags.Foundation]),
     icon: {
       hasUrl: true,
       url: 'https://claude.ai/favicon.ico',
@@ -98,7 +97,7 @@ export const OPTIONS = [
   {
     name: 'Perplexity',
     url: 'https://www.perplexity.ai/',
-    tag: new Set([Tags.Default, Tags.Search, Tags.MultiLlm]),
+    tag: new Set([Tags.Search, Tags.MultiLlm]),
     icon: {
       hasUrl: true,
       url: 'https://www.perplexity.ai/favicon.ico',
@@ -170,7 +169,7 @@ export const OPTIONS = [
   {
     name: 'Duck.ai',
     url: 'https://duck.ai/',
-    tag: new Set([Tags.Default, Tags.MultiLlm]),
+    tag: new Set([Tags.MultiLlm]),
     icon: {
       hasUrl: true,
       url: 'https://duck.ai/favicon.ico',
