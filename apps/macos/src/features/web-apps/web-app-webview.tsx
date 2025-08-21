@@ -9,7 +9,7 @@ export function WebAppWebview({
   return (
     <div className="flex h-[calc(100%-4rem)] max-h-[960px] w-[480px] shrink-0 flex-col gap-2">
       <a
-        className="w-full rounded-md px-2 py-1 font-light font-mono text-neutral-500 text-xs underline underline-offset-2"
+        className="w-full cursor-pointer rounded-md px-2 pt-2 pb-1 font-light font-mono text-neutral-500 text-xs underline underline-offset-2 dark:text-neutral-300"
         href={src}
         rel="noreferrer"
         target="_blank"
@@ -19,7 +19,10 @@ export function WebAppWebview({
         <LuExternalLink className="ml-2 inline h-3 w-3" />
       </a>
 
-      <Webview className={cn('h-full w-full shrink-0', className)} src={src} />
+      <Webview
+        className={cn('h-full w-full shrink-0 rounded-xl', className)}
+        src={src}
+      />
     </div>
   );
 }

@@ -27,7 +27,7 @@ export function Webview({
 
   return (
     <div
-      className={cn('shrink-0 overflow-hidden rounded-md shadow-lg', className)}
+      className={cn('shrink-0 overflow-hidden rounded-md shadow-xl', className)}
     >
       <webview
         allowpopups
