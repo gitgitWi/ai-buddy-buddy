@@ -1,5 +1,4 @@
-import { createFileRoute } from '@tanstack/react-router';
-import { Text } from '~/components/ui/text';
+import { createFileRoute, Link } from '@tanstack/react-router';
 
 export const Route = createFileRoute('/')({
   component: RouteComponent,
@@ -7,10 +6,8 @@ export const Route = createFileRoute('/')({
 
 function RouteComponent() {
   return (
-    <div className="relative flex h-full w-full flex-col items-center justify-center gap-y-2 pb-[20%]">
-      <Text.H1 className="select-none text-neutral-950 dark:text-neutral-50">
-        AI BuddyBuddy
-      </Text.H1>
+    <div className="relative flex h-full w-full flex-col items-center justify-center gap-y-2 overflow-auto">
+      <Link to="/web-apps">Web Apps</Link>
     </div>
   );
 }
