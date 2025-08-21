@@ -1,4 +1,5 @@
 export enum Tags {
+  Default = 'default',
   Foundation = 'foundation',
   Search = 'search',
   MultiLlm = 'multi-llm',
@@ -6,16 +7,22 @@ export enum Tags {
   Agent = 'agent',
 }
 
+export type WebAppOption = {
+  name: string;
+  url: string;
+  tag: Set<Tags>;
+};
+
 export const OPTIONS = [
   {
     name: 'ChatGPT',
     url: 'https://chatgpt.com/',
-    tag: new Set([Tags.Foundation]),
+    tag: new Set([Tags.Default, Tags.Foundation]),
   },
   {
     name: 'Claude',
     url: 'https://claude.ai/new',
-    tag: new Set([Tags.Foundation]),
+    tag: new Set([Tags.Default, Tags.Foundation]),
   },
   {
     name: 'Gemini',
@@ -35,7 +42,7 @@ export const OPTIONS = [
   {
     name: 'Perplexity',
     url: 'https://www.perplexity.ai/',
-    tag: new Set([Tags.Search, Tags.MultiLlm]),
+    tag: new Set([Tags.Default, Tags.Search, Tags.MultiLlm]),
   },
   {
     name: 'Liner',
@@ -70,7 +77,7 @@ export const OPTIONS = [
   {
     name: 'Duck.ai',
     url: 'https://duck.ai/',
-    tag: new Set([Tags.MultiLlm]),
+    tag: new Set([Tags.Default, Tags.MultiLlm]),
   },
   {
     name: '에이닷',
@@ -87,4 +94,4 @@ export const OPTIONS = [
     url: 'https://yupp.ai/',
     tag: new Set([Tags.MultiLlm]),
   },
-] as const;
+] as const satisfies WebAppOption[];

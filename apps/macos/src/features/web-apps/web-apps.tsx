@@ -1,9 +1,11 @@
 import { useState } from 'react';
-import { OPTIONS } from './constants';
+import { OPTIONS, Tags } from './constants';
 import { WebAppWebview } from './web-app-webview';
 
 export function WebApps() {
-  const [selected, setSelected] = useState(OPTIONS);
+  const [selected, setSelected] = useState(() =>
+    OPTIONS.filter((option) => (option.tag as Set<Tags>).has(Tags.Default))
+  );
 
   return (
     // TODO: selector - filter
