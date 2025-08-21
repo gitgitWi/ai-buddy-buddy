@@ -9,8 +9,14 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './../../../routes/__root'
+import { Route as WebAppsRouteImport } from './../../../routes/web-apps'
 import { Route as IndexRouteImport } from './../../../routes/index'
 
+const WebAppsRoute = WebAppsRouteImport.update({
+  id: '/web-apps',
+  path: '/web-apps',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -19,28 +25,39 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/web-apps': typeof WebAppsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/web-apps': typeof WebAppsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/web-apps': typeof WebAppsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/web-apps'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/web-apps'
+  id: '__root__' | '/' | '/web-apps'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  WebAppsRoute: typeof WebAppsRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/web-apps': {
+      id: '/web-apps'
+      path: '/web-apps'
+      fullPath: '/web-apps'
+      preLoaderRoute: typeof WebAppsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -53,6 +70,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  WebAppsRoute: WebAppsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
