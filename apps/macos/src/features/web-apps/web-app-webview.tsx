@@ -1,3 +1,4 @@
+import { LuExternalLink } from 'react-icons/lu';
 import { Webview, type WebviewProps } from '~/components/ui/webview';
 import { cn } from '~/lib/utils';
 
@@ -14,6 +15,8 @@ export function WebAppWebview({
         target="_blank"
       >
         {src}
+
+        <LuExternalLink className="ml-2 inline h-3 w-3" />
       </a>
 
       <Webview className={cn('h-full w-full shrink-0', className)} src={src} />
