@@ -1,5 +1,6 @@
 import { useCallback } from 'react';
 import { match, P } from 'ts-pattern';
+import { useShallow } from 'zustand/shallow';
 import { Avatar, AvatarFallback, AvatarImage } from '~/components/ui/avatar';
 import { cn } from '~/lib/utils';
 import type { WebAppOption } from './constants';
@@ -7,7 +8,14 @@ import { useWebAppsStore } from './use-web-apps-store';
 import { WebAppWebview } from './web-app-webview';
 
 export function WebApps() {
-  const { selected, unselected, toggleSelected } = useWebAppsStore();
+  const { selected, unselected, toggleSelected } = useWebAppsStore(
+    useShallow((state) => ({
+      selected: state.selected,
+      unselected: state.unselected,
+      toggleSelected: state.toggleSelected,
+    }))
+  );
+
   const getAvatar = useCallback(
     (option: WebAppOption) =>
       match(option.icon)
@@ -61,8 +69,8 @@ export function WebApps() {
       </div>
 
       <div className="app_region_no_drag flex h-full w-full flex-row flex-nowrap justify-start gap-8 overflow-x-auto p-4 align-baseline">
-        {Array.from(selected).map((option) => (
-          <WebAppWebview key={option.name} src={option.url} />
+        {selected.map(({ name }) => (
+          <WebAppWebview key={name} name={name} />
         ))}
       </div>
     </>

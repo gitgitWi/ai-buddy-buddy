@@ -1,9 +1,10 @@
 import type { WebviewTag } from 'electron';
-import { useEffect, useRef } from 'react';
+import { type RefObject, useEffect } from 'react';
 import { cn } from '~/lib/utils';
 
 export type WebviewProps = {
   src: string;
+  ref: RefObject<WebviewTag | null>;
   className?: string;
   partition?: string;
   zoomFactor?: number;
@@ -11,11 +12,11 @@ export type WebviewProps = {
 
 export function Webview({
   src,
+  ref,
   className,
   partition = 'persist:webview',
   zoomFactor = 0.85,
 }: WebviewProps) {
-  const ref = useRef<WebviewTag | null>(null);
   useEffect(() => {
     if (!ref.current) {
       return;
