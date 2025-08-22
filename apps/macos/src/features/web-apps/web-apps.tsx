@@ -68,7 +68,7 @@ export function WebApps() {
         </div>
       </div>
 
-      <div className="app_region_no_drag flex h-full w-full flex-row flex-nowrap justify-start gap-8 overflow-x-auto p-4 align-baseline">
+      <div className="app_region_no_drag flex h-full w-full snap-x snap-mandatory flex-row flex-nowrap justify-start gap-8 overflow-x-auto p-4 align-baseline">
         {selected.map(({ name }) => (
           <WebAppWebview key={name} name={name} />
         ))}

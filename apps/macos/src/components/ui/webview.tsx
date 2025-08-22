@@ -27,9 +27,7 @@ export function Webview({
   }, [zoomFactor]);
 
   return (
-    <div
-      className={cn('shrink-0 overflow-hidden rounded-md shadow-xl', className)}
-    >
+    <div className={cn('shrink-0 overflow-hidden rounded-md ', className)}>
       <webview
         // biome-ignore lint/nursery/noTsIgnore: allowpopups accepts string
         // @ts-ignore
