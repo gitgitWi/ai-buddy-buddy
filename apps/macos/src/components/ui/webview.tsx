@@ -21,7 +21,7 @@ export function Webview({
       return;
     }
     ref.current.addEventListener('dom-ready', () => {
-      ref.current?.setZoomFactor(zoomFactor);
+      ref.current!.setZoomFactor(zoomFactor);
     });
   }, [zoomFactor]);
 
@@ -30,7 +30,9 @@ export function Webview({
       className={cn('shrink-0 overflow-hidden rounded-md shadow-xl', className)}
     >
       <webview
-        allowpopups
+        // biome-ignore lint/nursery/noTsIgnore: allowpopups accepts string
+        // @ts-ignore
+        allowpopups="true"
         className={cn('h-full w-full')}
         partition={partition}
         ref={ref}
