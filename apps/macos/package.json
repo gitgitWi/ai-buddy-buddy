@@ -19,6 +19,7 @@
     "@fontsource-variable/geist-mono": "^5.2.6",
     "@fontsource/nanum-gothic-coding": "^5.2.6",
     "@fontsource/pretendard": "^5.2.5",
+    "@ghostery/adblocker-electron": "^2.11.5",
     "@langchain/community": "^0.3.50",
     "@langchain/core": "^0.3.70",
     "@langchain/openai": "^0.6.7",
