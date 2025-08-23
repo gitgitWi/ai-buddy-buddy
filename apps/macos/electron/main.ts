@@ -1,8 +1,9 @@
-import { app, BrowserWindow, session } from 'electron';
 import { createRequire } from 'node:module';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { app, BrowserWindow, session } from 'electron';
 import { registerHandlers } from './handlers';
+import { initAdBlocker } from './libs/ad-blocker';
 
 const require = createRequire(import.meta.url);
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -91,6 +92,7 @@ function createWindow() {
   });
 
   registerHandlers();
+  initAdBlocker(win.webContents.session);
 
   if (VITE_DEV_SERVER_URL) {
     win.loadURL(VITE_DEV_SERVER_URL);
