@@ -35,6 +35,7 @@ function createWindow() {
     webPreferences: {
       preload: path.join(__dirname, 'preload.mjs'),
       webviewTag: true,
+      devTools: import.meta.env.DEV,
     },
     alwaysOnTop: true,
 
@@ -56,6 +57,8 @@ function createWindow() {
     height: 720,
     minHeight: 640,
   });
+
+  win.setVisibleOnAllWorkspaces(true, { visibleOnFullScreen: false });
 
   // Test active push message to Renderer-process.
   win.webContents.on('did-finish-load', () => {
