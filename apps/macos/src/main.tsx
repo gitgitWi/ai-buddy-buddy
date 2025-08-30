@@ -1,8 +1,10 @@
 import { StrictMode } from 'react';
 import ReactDOM from 'react-dom/client';
-import './styles/index.css';
 import { TanstackQueryProvider } from './features/providers/query';
 import { TanstackRouterProvider } from './features/providers/router';
+import './styles/index.css';
+
+import.meta.env.DEV && import('./lib/react-scan');
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <StrictMode>

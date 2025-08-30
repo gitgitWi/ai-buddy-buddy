@@ -1,7 +1,9 @@
 import { createRequire } from 'node:module';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { app, BrowserWindow } from 'electron';
+import { app, BrowserWindow, session } from 'electron';
+import { registerHandlers } from './handlers';
+import { initAdBlocker } from './libs/ad-blocker';
 
 const require = createRequire(import.meta.url);
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -30,14 +32,18 @@ let win: BrowserWindow | null;
 
 function createWindow() {
   win = new BrowserWindow({
-    icon: path.join(process.env.VITE_PUBLIC, 'electron-vite.svg'),
+    icon: path.join(process.env.VITE_PUBLIC as string, 'electron-vite.svg'),
     webPreferences: {
       preload: path.join(__dirname, 'preload.mjs'),
+      webviewTag: true,
+      devTools: import.meta.env.DEV,
     },
     alwaysOnTop: true,
-    transparent: true,
+
     frame: false,
-    backgroundColor: '#00000000',
+    transparent: true,
+    opacity: 1,
+    backgroundColor: 'rgba(255,255,255,0)',
     backgroundMaterial: 'auto',
     titleBarStyle: 'hiddenInset',
     titleBarOverlay: true,
@@ -45,15 +51,48 @@ function createWindow() {
     vibrancy: 'fullscreen-ui',
     visualEffectState: 'active',
     hasShadow: true,
+    useContentSize: true,
 
-    width: 480,
+    width: 520,
+    minWidth: 520,
     height: 720,
+    minHeight: 640,
   });
+
+  win.setVisibleOnAllWorkspaces(true, { visibleOnFullScreen: false });
 
   // Test active push message to Renderer-process.
   win.webContents.on('did-finish-load', () => {
+    if (!import.meta.env.DEV) {
+      return;
+    }
+
+    win?.webContents.openDevTools();
     win?.webContents.send('main-process-message', new Date().toLocaleString());
   });
+
+  win.webContents.setWindowOpenHandler(({ url }) => {
+    const newSession = session.fromPartition('persist:webview', {
+      cache: true,
+    });
+    const newWindow = new BrowserWindow({
+      webPreferences: {
+        session: newSession,
+        contextIsolation: true,
+        nodeIntegration: false,
+      },
+      frame: true,
+      alwaysOnTop: true,
+      opacity: 1,
+      backgroundColor: '#00000000',
+      roundedCorners: true,
+    });
+    newWindow.loadURL(url);
+    return { action: 'deny' };
+  });
+
+  registerHandlers();
+  initAdBlocker(win.webContents.session);
 
   if (VITE_DEV_SERVER_URL) {
     win.loadURL(VITE_DEV_SERVER_URL);
